@@ -13,7 +13,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User findByUsernameAndPassword(String username, String password) {
         User user = null;
-        String sql = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
+        String sql = "SELECT * FROM users WHERE Username = ? AND Password = ?";
         try {
             Connection conn = DatabaseUtility.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);

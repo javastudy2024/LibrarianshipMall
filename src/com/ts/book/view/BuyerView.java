@@ -1,21 +1,32 @@
 package com.ts.book.view;
 
+import com.ts.book.controller.AdminController;
 import com.ts.book.controller.BuyerController;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BuyerView {
+//    public static void main(String[] args) {
+//        new BuyerView().displayMenu();
+//    }
 
     private Scanner scanner = new Scanner(System.in);
 
     BuyerController buyerController = new BuyerController();
 
-    public void displayMenu() {
+
+    public void displayMenu(int userId) {
         buyerController.displayBooks();
         boolean keepRunning = true;
         while (keepRunning) {
             System.out.println("\n欢迎进入买家页面");
+
+
+            buyerController.displayUserBalance(userId);
+
+
             System.out.println("1. 购买书籍");
             System.out.println("2. 进入购物车");
             System.out.println("3. 查询所有订单信息");
@@ -28,7 +39,7 @@ public class BuyerView {
                     buyerController.initiatePurchase();
                     break;
                 case 2:
-
+                    buyerController.handleCartOperations(userId);
                     break;
                 case 3:
                     break;

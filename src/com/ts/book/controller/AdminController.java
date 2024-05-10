@@ -22,9 +22,9 @@ public class AdminController {
     //  添加用户
     public void addUser() {
         System.out.print("请输入用户名: ");
-        String username = new Scanner(System.in).nextLine();
+        String username = scanner.nextLine();
         System.out.print("请输入密码: ");
-        String password = new Scanner(System.in).nextLine();
+        String password = scanner.nextLine();
         if (adminService.addUser(username, password)) {
             System.out.println("新用户添加成功。");
         } else {
@@ -38,7 +38,7 @@ public class AdminController {
     //  删除用户
     public void deleteUser() {
         System.out.print("请输入要删除的用户编号: ");
-        int userId = new Scanner(System.in).nextInt();
+        int userId = scanner.nextInt();
         if (adminService.deleteUserById(userId)) {
             System.out.println("用户删除成功。");
         } else {
@@ -54,7 +54,8 @@ public class AdminController {
         List<User> users = adminService.getAllUsers();
         users.forEach(user -> System.out.println("用户编号: " + user.getUserID()
                 + ", 用户名称: " + user.getUsername()));
-
+        // zhangsan
+        // lisi ->zhangsan
         System.out.print("请输入要修改的用户ID: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // 清除输入缓冲

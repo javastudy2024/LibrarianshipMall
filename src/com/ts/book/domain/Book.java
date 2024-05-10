@@ -1,6 +1,7 @@
 package com.ts.book.domain;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Book {
     private int bookID;  // 书籍编号
@@ -57,5 +58,18 @@ public class Book {
 
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return bookID == book.bookID && stockQuantity == book.stockQuantity && Objects.equals(bookName, book.bookName) && Objects.equals(unitPrice, book.unitPrice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookID, bookName, unitPrice, stockQuantity);
     }
 }

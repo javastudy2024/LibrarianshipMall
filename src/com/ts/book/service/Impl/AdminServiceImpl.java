@@ -17,16 +17,24 @@ public class AdminServiceImpl implements AdminService {
     //  添加功能
     //  添加用户
     public boolean addUser(String username, String password) {
+        //String name = null;
+        //null.isEmpty()
+
+        if (username == null || username.isEmpty()) {
+            System.out.println("用户不能为空");
+            return false;
+        }
+
         if (adminDAO.findByUsername(username) != null) {
             System.out.println("用户名已存在，请重新输入用户名。");
             return false;
         }
         User newUser = new User();
-        newUser.getUserID();
         newUser.setUsername(username);
         newUser.setPassword(password);
         newUser.setBalance(BigDecimal.ZERO); // 设置默认金额为 0.0 元
         newUser.setPermissionID(3); // 默认为买家权限
+
         adminDAO.addUser(newUser);
         return true;
     }
@@ -52,6 +60,21 @@ public class AdminServiceImpl implements AdminService {
     //  修改用户信息
     @Override
     public boolean updateUser(User user) {
+        if (user == null) {
+
+        }
+
+        User userById = adminDAO.findUserById(user.getUserID());
+        if (userById == null) {
+            System.out.println("用户不存在");
+            return false;
+        }
+
+        if (adminDAO.findByUsername(user.getUsername()) != null) {
+            System.out.println("用户名已存在，请重新输入用户名。");
+            return false;
+        }
+
         return adminDAO.updateUser(user);
     }
 

@@ -9,6 +9,6 @@ import java.util.Map;
 public interface OrderService {
     List<Order> getAllOrders();
 
-    void createOrder(Map<Book, Integer> items);
+    Order createOrder(Map<Book, Integer> items,int userId);
     void displayOrders();
 }

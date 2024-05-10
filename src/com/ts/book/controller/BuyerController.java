@@ -137,9 +137,10 @@ public class BuyerController {
         bookService.purchaseBook(1, 1); // 示例购买
     }
 
-    public void handleCartOperations() {
+    public void handleCartOperations(int userId) {
         shoppingCart.displayCart(); // 显示购物车内容
-        shoppingCart.checkout(orderService); // 结账
+
+        shoppingCart.checkout(orderService, userId); // 结账
     }
 
     public void displayAllOrders() {

@@ -1,6 +1,7 @@
 package com.ts.book.view;
 
 import com.ts.book.controller.LoginController;
+import com.ts.book.domain.User;
 
 import java.util.Scanner;
 
@@ -23,16 +24,22 @@ public class WelcomeView {
             switch (choice) {
                 case 1:
                     //  登录
-                    int userType = login(); // 用户登录
-                    if (userType != -1) { // 检查是否登录成功
-                        loginController.navigateToUserInterface(userType); // 导航到相应用户界面
+                    User user = login(); // 用户登录
+
+                    if (user == null) {
+                        System.out.println("登陆失败");
+                        break;
+                    }
+
+                    if (user.getPermissionID() != -1) { // 检查是否登录成功
+                        loginController.navigateToUserInterface(user.getPermissionID(),user.getUserID()); // 导航到相应用户界面
                     } else {
                         System.out.println("登录失败或用户选择退出。"); // 提供登录失败的反馈
                     }
                     break;
                 case 2:
                     // 注册
-                    loginController.register(scanner);
+                    //loginController.register(scanner);
                     break;
                 case 3:
                      // 充值
@@ -48,7 +55,7 @@ public class WelcomeView {
         }
     }
 
-    private int login() {
+    private User login() {
 
         // 使用现有的控制器逻辑，已经包括三次尝试的处理
         LoginController loginController = new LoginController();
